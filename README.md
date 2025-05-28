@@ -30,7 +30,7 @@ create the .env file in root of project same level as main.py file and provide t
 4.  Run the Flask app
     - python main.py:  The API will be available at: http://{HOST}:{PORT}/
 
-📡 API Endpoint
+5.  API Endpoint
     - POST /api/predict
     -Request
     - URL: http://{HOST}:{PORT}/api/predict
@@ -45,11 +45,11 @@ create the .env file in root of project same level as main.py file and provide t
                 "predict": "scam",
                 "sms": "mama shikamoo, hujambo mama yangu ile pesa naomba unitumie"
                }
-Prediction Results:
-    predict: The prediction result, either "scam" or "trust"
-    sms: The original message text
+6.  Prediction Results:
+    - predict: The prediction result, either "scam" or "trust"
+    - sms: The original message text
 
-✅ Test with curl
+7. Test with curl
 
 curl -X POST http://{HOST}:{PORT}/api/predict \
   -H "Content-Type: application/json" \
