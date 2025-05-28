@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: SMSGuard TZ
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smsguard
+    username: postgres
+    password: mdsoln
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#  main:
+#    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    com.smsguard: DEBUG
+
+# Resilience4J configuration (circuit breakers, retries, etc.)
+resilience4j:
+  retry:
+    instances:
+      pythonApi:
+        maxAttempts: 3
+        waitDuration: 500ms
+        retryExceptions:
+          - java.io.IOException
+          - java.net.ConnectException
+        ignoreExceptions:
+          - java.lang.IllegalArgumentException
+  circuitbreaker:
+    instances:
+      pythonApi:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10000ms
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+
+# Python API URL configuration
+flask:
+  api:
+    url: http://localhost:5000/predict
