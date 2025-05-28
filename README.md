@@ -31,9 +31,9 @@ create the .env file in root of project same level as main.py file and provide t
     - python main.py:  The API will be available at: http://{HOST}:{PORT}/
 
 📡 API Endpoint
-    POST /api/predict
-    Request
-    URL: http://{HOST}:{PORT}/api/predict
+    - POST /api/predict
+    -Request
+    - URL: http://{HOST}:{PORT}/api/predict
 
     Method: POST
 
