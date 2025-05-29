@@ -5,6 +5,8 @@ import com.smsguard.dto.SmsRequest;
 import com.smsguard.dto.SmsResponse;
 import com.smsguard.entity.IncomingMessage;
 import com.smsguard.repository.IncomingMessageRepo;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -54,4 +56,8 @@ public class AIService {
 
     }
 
+    public JSONArray handleOutgoingSms() throws JSONException {
+
+        return null;
+    }
 }
