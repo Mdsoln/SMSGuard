@@ -22,7 +22,7 @@ public class IncomingMessage {
     @Column(name = "category")
     private String category;
     @Column(name = "notify_status")
-    private boolean notify = false;
+    private boolean notify;
 
     public IncomingMessage() {
     }

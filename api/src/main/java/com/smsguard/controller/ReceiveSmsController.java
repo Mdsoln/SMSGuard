@@ -6,6 +6,8 @@ import com.smsguard.service.AIService;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +39,11 @@ public class ReceiveSmsController {
             aiService.classify(request);
         } else if (Actions.ACTION_OUTGOING.equals(action)) {
             JSONArray eventJson = aiService.handleOutgoingSms();
+            response.put("events",eventJson);
+        }else {
+            response.put("Error",aiService.error());
         }
-        return null;
+        return new ResponseEntity<>(new JSONObject(response).toString(), HttpStatus.OK);
     }
 
 }
