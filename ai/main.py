@@ -14,7 +14,7 @@ model = joblib.load('scam_sms_predict_model.pkl')
 CORS(app)
 
 
-@app.route('/api/predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict_scam_sms():
     if request.is_json:
         sms = request.json.get('sms')
