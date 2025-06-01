@@ -37,7 +37,7 @@ public class AIService {
     public void classify(SmsRequest request){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
-        HttpEntity<SmsRequest> entity = new HttpEntity<>(request, headers);
+        HttpEntity<String> entity = new HttpEntity<>("{\"sms\":\"" + request.getMessage() + "\"}", headers);
         ResponseEntity<SmsResponse> response = restTemplate.exchange(
                 flaskApiUrl,
                 HttpMethod.POST,
@@ -47,8 +47,8 @@ public class AIService {
 
         assert response.getBody() != null;
         IncomingMessage incoming = new IncomingMessage();
-        incoming.setMobile(request.getMobile());
-        incoming.setMessage(request.getMessage());
+        incoming.setRecipient(request.getMobile());
+        incoming.setMessage("Puuza aina hiii ya Message\n"+request.getMessage());
 
         if (response.getBody().getPrediction().equals("scam")){
             incoming.setCategory(Category.scam.name());
@@ -80,7 +80,7 @@ public class AIService {
         JSONObject messageObject = new JSONObject();
 
         messageObject.put("id", String.valueOf(outgoing.getIncomingId()));
-        messageObject.put("to", outgoing.getMobile());// TODO: 5/30/25 sending the scam message to the Spam and Block section of the normal messaging app
+        messageObject.put("to", outgoing.getRecipient());// TODO: 5/30/25 sending the scam message to the Spam and Block section of the normal messaging app
         messageObject.put("message", outgoing.getMessage());
         messagesArray.put(messageObject);
 

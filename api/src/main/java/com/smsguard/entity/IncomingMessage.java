@@ -15,8 +15,8 @@ public class IncomingMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long incomingId;
 
-    @Column(name = "from")
-    private String mobile;
+    @Column(name = "recipient")
+    private String recipient;
     @Column(name = "message")
     private String message;
     @Column(name = "category")
@@ -27,8 +27,8 @@ public class IncomingMessage {
     public IncomingMessage() {
     }
 
-    public IncomingMessage(String mobile, String message, String category) {
-        this.mobile = mobile;
+    public IncomingMessage(String recipient, String message, String category) {
+        this.recipient = recipient;
         this.message = message;
         this.category = category;
     }

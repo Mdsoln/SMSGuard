@@ -18,10 +18,11 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/api/v1/smsguard-tz")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ReceiveSmsController {
     private final AIService aiService;
 
-
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/receive", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> receiveSms(
             @RequestParam(name = "action") String action,
